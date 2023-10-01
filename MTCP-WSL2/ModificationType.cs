@@ -2,5 +2,6 @@
 
 public enum ModificationType
 {
-    Add,Del
+    Add,
+    Del
 }
