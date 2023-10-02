@@ -1,4 +1,6 @@
-﻿namespace MTCP_WSL2;
+﻿using System.Net.NetworkInformation;
+
+namespace MTCP_WSL2;
 
 
 
@@ -8,6 +10,7 @@ internal class Program
     private static int Main()
     {
         HyperVManager hyperVManager = new HyperVManager();
+        hyperVManager.CreateHyperVSwitch("Realtek PCIe GbE Family Controller"); //FOR TEST PURPOSE
         var networkStateManager = new NetworkStateManager(REFRESH_DELAY);
         networkStateManager.OnUpdate += OnNetworkUpdate;
         while (true) Thread.Sleep(REFRESH_DELAY);

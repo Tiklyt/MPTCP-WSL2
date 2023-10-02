@@ -18,9 +18,13 @@ public class HyperVManager
         {
             if (!IsNetworkInterfaceSwitched(interfaceName))
             {
-                //RunPowerShell(
-                  //  "New-VMSwitch -Name \"switch\" -SwitchType External -NetAdapterName \"physicalADAPTER\"\n");
-                  //TODO
+                //IT SUCCESSFULLY CREATE AN HYPER-V SWITCHES
+                var id = "mtcp_123"; //TO DO 
+                var escapedInterfaceName = "Ethernet"; //TO DO
+                var command = $"New-VMSwitch -Name '{id}' -NetAdapterName '{escapedInterfaceName}' -AllowManagementOS $true";
+
+                Console.WriteLine(command);
+                Console.WriteLine(RunPowerShell(command));
             }
         });
     }
@@ -37,7 +41,7 @@ public class HyperVManager
             powerShellProcess.StartInfo.UseShellExecute = false;
             powerShellProcess.StartInfo.CreateNoWindow = true;
             powerShellProcess.Start();
-                
+
             var output = powerShellProcess.StandardOutput.ReadToEnd();
             var errors = powerShellProcess.StandardError.ReadToEnd();
             powerShellProcess.WaitForExit();
@@ -47,8 +51,7 @@ public class HyperVManager
         {
             Console.WriteLine("Error: " + ex.Message);
         }
-
         return "";
     }
-
+    
 }
